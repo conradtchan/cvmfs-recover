@@ -42,6 +42,10 @@ with open(error_file_path, 'r') as error_file:
         if parts[0] == "data" and parts[1] == "chunk":
             file_hash = parts[2]
 
+        # Partial data chunk
+        elif parts[0] == "partial" and parts[1] == "data" and parts[2] == "chunk":
+            file_hash = parts[3]
+
         # Missing catalog
         elif parts[0] == "failed" and parts[2] == "open" and parts[3] == "catalog":
             file_hash = parts[4].strip() + "C"
